@@ -41,10 +41,10 @@ public class App {
 
     }
     // Metod 2: den här metoden är för meny och saldo
-    private static void Meny(Scanner input) {
+     private static void Meny(Scanner input) {
         boolean konto = true;
         while (konto) {
-            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n" + "2. Insättning\n" + "3. Uttag\n"
+            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n" + "2. Insättning\n" + "3. Uttag\n" + "4.Avsluta programmet!"
                    );
 
             String val = input.nextLine();
@@ -72,12 +72,17 @@ public class App {
                         saldo -= uttag;
                     }
                     break;
+                    case "4":
+                    System.out.println("Programmet avslutas.");
+                    konto = false;
+                    break;
 
                
 
                 default:
                     System.out.println("Du kan välja bara mellan 1, 2, 3 eller 4.");
                     break;
+                    
             }
         }
     }
