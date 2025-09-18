@@ -22,12 +22,13 @@ public class App {
         input.close();
 
     }
+    
 
     private static boolean loggaIn(Scanner input) {
         while (försök < 3) {
             System.out.print("Ange din pinkod: ");
-            int dinPinKod = input.nextInt();
-            input.nextLine();
+            int dinPinKod = läsHeltal(input);
+            
 
             if (dinPinKod == pin) {
                 System.out.println("Välkommen Boss!");
@@ -39,7 +40,20 @@ public class App {
         }
         return false;
 
+    } 
+    private static int läsHeltal(Scanner input) {
+    while (true) {
+        String inmatning = input.nextLine();
+        try {
+            return Integer.parseInt(inmatning);
+        } catch (NumberFormatException e) {
+            System.out.print("Ange ett heltal: ");
+        }
     }
+}
+
+
+    
     // Metod 2: den här metoden är för meny och saldo
      private static void Meny(Scanner input) {
         boolean konto = true;
@@ -55,16 +69,17 @@ public class App {
                     break;
                     case "2":
                     System.out.print("Ange din cash Boss: ");
-                    int insätt = input.nextInt();
-                    input.nextLine();
+                    int insätt = läsHeltal(input);
+                    
+                   
                     saldo += insätt;
                     System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo
                             + " kr.  Boss du blir lite rikare idag :)");
                     break;
                     case "3":
-                    System.out.print("Hur mycket vill att ta ut idag Boss: ");
-                    int uttag = input.nextInt();
-                    input.nextLine();
+                    System.out.print("Boss hur mycket cash ta ut vi idag : ");
+                    int uttag = läsHeltal(input);
+                    
                     if (uttag > saldo) {
                         System.out.println("Tyvär Boss du har bara: " + saldo + " kr. Lägg lite extra cash ;)");
                     } else {
@@ -86,4 +101,5 @@ public class App {
             }
         }
     }
+    
 }
