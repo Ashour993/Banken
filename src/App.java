@@ -44,7 +44,7 @@ public class App {
     private static void Meny(Scanner input) {
         boolean konto = true;
         while (konto) {
-            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n" + "2. Insättning\n"
+            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n" + "2. Insättning\n" + "3. Uttag\n"
                    );
 
             String val = input.nextLine();
@@ -61,6 +61,18 @@ public class App {
                     System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo
                             + " kr.  Boss du blir lite rikare idag :)");
                     break;
+                    case "3":
+                    System.out.print("Hur mycket vill att ta ut idag Boss: ");
+                    int uttag = input.nextInt();
+                    input.nextLine();
+                    if (uttag > saldo) {
+                        System.out.println("Tyvär Boss du har bara: " + saldo + " kr. Lägg lite extra cash ;)");
+                    } else {
+                        System.out.println("Du tog ut " + uttag + " kr. Din nya  saldo: " + saldo + " kr.");
+                        saldo -= uttag;
+                    }
+                    break;
+
                
 
                 default:
