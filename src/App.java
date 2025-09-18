@@ -13,6 +13,7 @@ public class App {
          Scanner input = new Scanner(System.in);
 
         if (loggaIn(input)) {
+            Meny(input);
            
         } else {
             System.out.println("Boss!!! du glömet din pin?! Snälla försök senare. Programmet avslutas.");
@@ -37,5 +38,27 @@ public class App {
             }
         }
         return false;
+
+    }
+    // Metod 2: den här metoden är för meny och saldo
+    private static void Meny(Scanner input) {
+        boolean konto = true;
+        while (konto) {
+            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n"
+                   );
+
+            String val = input.nextLine();
+
+            switch (val) {
+                case "1":
+                    System.out.println("Du saldo: " + saldo + " kr.");
+                    break;
+               
+
+                default:
+                    System.out.println("Du kan välja bara mellan 1, 2, 3 eller 4.");
+                    break;
+            }
+        }
     }
 }
