@@ -53,13 +53,13 @@ public class App {
 
             // Metod 1: Den här metod användaren kan bytas sin pinKod!
 }       private static void ändraLösenOrd (Scanner input){
-            System.out.println("Ange din gammla lösenord: ");
+            System.out.println("Ange din gamla lösenord: ");
             int gammalPin = läsHeltal(input);
             if (gammalPin == pin ) {
                 System.out.println("ange din nya pinKod: ");
                 int nyPinKod = läsHeltal(input);
                 pin = nyPinKod;
-                System.out.println("Din gammal pinKod är ändrad!");
+                System.out.println("Din gammal pinKod är ändrat!");
                 
             } else {
                 System.out.println("Fel pinKod!! Du kan inte ändra!!");
@@ -72,7 +72,7 @@ public class App {
      private static void Meny(Scanner input) {
         boolean konto = true;
         while (konto) {
-            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n" + "2. Insättning\n" + "3. Uttag\n" + "4. Ändra din LösenOrd!\n" + "5. Avsluta programmet!"
+            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n" + "2. Insättning\n" + "3. Uttag\n" + "4. Ändra din LösenOrd!\n" + "5. Loggaut:\n " + "6. Avsluta programmet!"
                    );
 
             String val = input.nextLine();
@@ -104,8 +104,11 @@ public class App {
                     case "4":
                     ändraLösenOrd(input);
                     break;
-
                     case "5":
+                    loggaUt(input);
+                    break;
+
+                    case "6":
                     System.out.println("Programmet avslutas.");
                     konto = false;
                     break;
@@ -113,11 +116,31 @@ public class App {
                
 
                 default:
-                    System.out.println("Du kan välja bara mellan 1, 2, 3, 4 eller 5.");
+                    System.out.println("Du kan välja bara mellan 1, 2, 3, 4, 5 eller 6.");
                     break;
                     
             }
         }
     }
+
+    private static void loggaUt (Scanner input){
+        System.out.println("vill du logga ut? ( ja/nej )?: ");
+        String svar = input.nextLine().trim().toLowerCase();
+
+        if (svar.equals("ja")) {
+            System.out.println("Du är utloggad Boss.");
+            if (loggaIn(input)) {
+
+                Meny(input);
+            }
+                
+            } else {
+                System.out.println("Du är fortforande inloggad Boss.");
+
+            }
+            
+        }
+
+    }
     
-}
+
