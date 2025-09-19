@@ -50,6 +50,20 @@ public class App {
             System.out.print("Ange ett heltal: ");
         }
     }
+
+            // Metod 1: Den här metod användaren kan bytas sin pinKod!
+}       private static void ändraLösenOrd (Scanner input){
+            System.out.println("Ange din gammla lösenord: ");
+            int gammalPin = läsHeltal(input);
+            if (gammalPin == pin ) {
+                System.out.println("ange din nya pinKod: ");
+                int nyPinKod = läsHeltal(input);
+                pin = nyPinKod;
+                System.out.println("Din gammal pinKod är ändrad!");
+                
+            } else {
+                System.out.println("Fel pinKod!! Du kan inte ändra!!");
+            }
 }
 
 
@@ -58,7 +72,7 @@ public class App {
      private static void Meny(Scanner input) {
         boolean konto = true;
         while (konto) {
-            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n" + "2. Insättning\n" + "3. Uttag\n" + "4.Avsluta programmet!"
+            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n" + "2. Insättning\n" + "3. Uttag\n" + "4. Ändra din LösenOrd!\n" + "5. Avsluta programmet!"
                    );
 
             String val = input.nextLine();
@@ -88,6 +102,10 @@ public class App {
                     }
                     break;
                     case "4":
+                    ändraLösenOrd(input);
+                    break;
+
+                    case "5":
                     System.out.println("Programmet avslutas.");
                     konto = false;
                     break;
@@ -95,7 +113,7 @@ public class App {
                
 
                 default:
-                    System.out.println("Du kan välja bara mellan 1, 2, 3 eller 4.");
+                    System.out.println("Du kan välja bara mellan 1, 2, 3, 4 eller 5.");
                     break;
                     
             }
