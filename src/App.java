@@ -122,7 +122,7 @@ public class App {
             }
         }
     }
-
+            // Metod 3: Den Här metoden är för loggaut funktion
     private static void loggaUt (Scanner input){
         System.out.println("vill du logga ut? ( ja/nej )?: ");
         String svar = input.nextLine().trim().toLowerCase();
