@@ -56,11 +56,17 @@ public class App {
                     case "2":
                     System.out.print("Ange din cash Boss: ");
                     int insätt = input.nextInt();
-                    input.nextLine();
-                    saldo += insätt;
-                    System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo
-                            + " kr.  Boss du blir lite rikare idag :)");
-                    break;
+                    if (insätt <= 0) {
+                        System.out.println("Du kan inte sätta in 0 eller minus pengar, försök igen!");
+                        
+                    } else {
+
+                        input.nextLine();
+                        saldo += insätt;
+                        System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo
+                                + " kr.  Boss du blir lite rikare idag :)");
+                        break;
+                    }
                
 
                 default:
