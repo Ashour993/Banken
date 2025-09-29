@@ -56,7 +56,7 @@ public class App {
                     case "2":
                     System.out.print("Ange din cash Boss: ");
                     int insätt = input.nextInt();
-                    if (insätt <= 0) {
+                    if (insätt <= 0 ) {
                         System.out.println("Du kan inte sätta in 0 eller minus pengar, försök igen!");
                         
                     } else {
