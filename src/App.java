@@ -41,6 +41,9 @@ public class App {
 
     }
 
+    
+
+
     private static int läsHeltal(Scanner input) {
         while (true) {
             String inmatning = input.nextLine();
