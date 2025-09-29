@@ -38,7 +38,17 @@ public class App {
             }
         }
         return false;
-
+        
+    }
+    private static int läsHeltal(Scanner input) {
+        while (true) {
+            String inmatning = input.nextLine();
+            try {
+                return Integer.parseInt(inmatning);
+            } catch (NumberFormatException e) {
+                System.out.print("Ange ett heltal: ");
+            }
+        }
     }
     // Metod 2: den här metoden är för meny och saldo
     private static void Meny(Scanner input) {
@@ -55,13 +65,17 @@ public class App {
                     break;
                     case "2":
                     System.out.print("Ange din cash Boss: ");
-                    int insätt = input.nextInt();
+                    int insätt = läsHeltal(input);
+                    
+                    
+
+                     
                     if (insätt <= 0 ) {
                         System.out.println("Du kan inte sätta in 0 eller minus pengar, försök igen!");
                         
                     } else {
 
-                        input.nextLine();
+                        
                         saldo += insätt;
                         System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo
                                 + " kr.  Boss du blir lite rikare idag :)");
