@@ -10,11 +10,11 @@ public class App {
     static int försök = 0;
 
     public static void main(String[] args) throws Exception {
-         Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
         if (loggaIn(input)) {
             Meny(input);
-           
+
         } else {
             System.out.println("Boss!!! du glömet din pin?! Snälla försök senare. Programmet avslutas.");
         }
@@ -38,8 +38,9 @@ public class App {
             }
         }
         return false;
-        
+
     }
+
     private static int läsHeltal(Scanner input) {
         while (true) {
             String inmatning = input.nextLine();
@@ -50,12 +51,13 @@ public class App {
             }
         }
     }
+
     // Metod 2: den här metoden är för meny och saldo
     private static void Meny(Scanner input) {
         boolean konto = true;
         while (konto) {
-            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n" + "2. Insättning\n"
-                   );
+            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n"
+                    + "2. Insättning\n");
 
             String val = input.nextLine();
 
@@ -63,25 +65,19 @@ public class App {
                 case "1":
                     System.out.println("Du saldo: " + saldo + " kr.");
                     break;
-                    case "2":
+                case "2":
                     System.out.print("Ange din cash Boss: ");
                     int insätt = läsHeltal(input);
-                    
-                    
-
-                     
-                    if (insätt <= 0 ) {
+                    if (insätt <= 0) {
                         System.out.println("Du kan inte sätta in 0 eller minus pengar, försök igen!");
-                        
+
                     } else {
 
-                        
                         saldo += insätt;
                         System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo
                                 + " kr.  Boss du blir lite rikare idag :)");
                         break;
                     }
-               
 
                 default:
                     System.out.println("Du kan välja bara mellan 1, 2, 3 eller 4.");
