@@ -83,6 +83,20 @@ public class App {
                     break;
                     case "2":
                     System.out.print("Ange din cash Boss: ");
+ Skapa_insattningFunktion
+                    int insätt = input.nextInt();
+                    if (insätt <= 0 ) {
+                        System.out.println("Du kan inte sätta in 0 eller minus pengar, försök igen!");
+                        
+                    } else {
+
+                        input.nextLine();
+                        saldo += insätt;
+                        System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo
+                                + " kr.  Boss du blir lite rikare idag :)");
+                        break;
+                    }
+
                     int insätt = läsHeltal(input);
                     
                    
@@ -113,6 +127,7 @@ public class App {
                     konto = false;
                     break;
 
+ main
                
 
                 default:
