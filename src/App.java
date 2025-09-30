@@ -135,7 +135,7 @@ public class App {
             }
                 
             } else {
-                System.out.println("Du är fortforande inloggad Boss.");
+                System.out.println("Du är fortforande inloggad Boss!");
 
             }
             
