@@ -1,10 +1,6 @@
 import java.util.Scanner;
 
 public class App {
-    /*
-     * Här skriver jag 3 variablr en
-     * variabl till PinKod ,till saldo och till försök.
-     */
     static int pin = 1234;
     static int saldo = 0;
     static int försök = 0;
@@ -14,13 +10,11 @@ public class App {
 
         if (loggaIn(input)) {
             Meny(input);
-
         } else {
             System.out.println("Boss!!! du glömet din pin?! Snälla försök senare. Programmet avslutas.");
         }
 
         input.close();
-
     }
 
     private static boolean loggaIn(Scanner input) {
@@ -37,20 +31,6 @@ public class App {
             }
         }
         return false;
-
-    }
-
-    private static int läsHeltal(Scanner input) {
-        while (true) {
-            String inmatning = input.nextLine();
-            try {
-                return Integer.parseInt(inmatning);
-            } catch (NumberFormatException e) {
-                System.out.print("Ange ett heltal: ");
-            }
-        }
-
-        // Metod 1: Den här metod användaren kan bytas sin pinKod!
     }
 
     private static void ändraLösenOrd(Scanner input) {
@@ -61,7 +41,6 @@ public class App {
             int nyPinKod = läsHeltal(input);
             pin = nyPinKod;
             System.out.println("Din gammal pinKod är ändrat!");
-
         } else {
             System.out.println("Fel pinKod!! Du kan inte ändra!!");
         }
@@ -78,20 +57,20 @@ public class App {
         }
     }
 
-    // Metod 2: den här metoden är för meny och saldo
     private static void Meny(Scanner input) {
         boolean konto = true;
         while (konto) {
-
-            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n" + "2. Insättning\n" + "3. Uttag\n" + "4. Ändra din LösenOrd!\n" + "5. Loggaut:\n " + "6. Avsluta programmet!"
-                   );
-
-            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n"
-                    + "2. Insättning\n");
-
+            System.out.println(
+                "Välj ett alternativ:\n**** MENY ****\n" +
+                "1. Se saldo\n" +
+                "2. Insättning\n" +
+                "3. Uttag\n" +
+                "4. Ändra din LösenOrd!\n" +
+                "5. Loggaut\n" +
+                "6. Avsluta programmet!"
+            );
 
             String val = input.nextLine();
-            
 
             switch (val) {
                 case "1":
@@ -99,64 +78,37 @@ public class App {
                     break;
                 case "2":
                     System.out.print("Ange din cash Boss: ");
-
-                    int insätt = input.nextInt();
-                    if (insätt <= 0 ) {
-
                     int insätt = läsHeltal(input);
                     if (insätt <= 0) {
-
                         System.out.println("Du kan inte sätta in 0 eller minus pengar, försök igen!");
-
                     } else {
-
                         saldo += insätt;
-                        System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo
-                                + " kr.  Boss du blir lite rikare idag :)");
-                        break;
+                        System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo + " kr.");
                     }
-
-
-                    int insätt = läsHeltal(input);
-                    
-                   
-                    saldo += insätt;
-                    System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo
-                            + " kr.  Boss du blir lite rikare idag :)");
                     break;
-
-                    case "3":
-                    System.out.print("Boss hur mycket cash ta ut vi idag : ");
+                case "3":
+                    System.out.print("Boss hur mycket cash ta ut vi idag: ");
                     int uttag = läsHeltal(input);
-                    
                     if (uttag > saldo) {
-                        System.out.println("Tyvär Boss du har bara: " + saldo + " kr. Lägg lite extra cash ;)");
+                        System.out.println("Tyvär Boss du har bara: " + saldo + " kr.");
                     } else {
-                        System.out.println("Du tog ut " + uttag + " kr. Din nya  saldo: " + saldo + " kr.");
                         saldo -= uttag;
+                        System.out.println("Du tog ut " + uttag + " kr. Nytt saldo: " + saldo + " kr.");
                     }
                     break;
-                    case "4":
+                case "4":
                     ändraLösenOrd(input);
                     break;
-                    case "5":
+                case "5":
                     loggaUt(input);
                     break;
-
-                    case "6":
+                case "6":
                     System.out.println("Programmet avslutas.");
                     konto = false;
                     break;
-
-
-               
-
-
-
                 default:
                     System.out.println("Du kan välja bara mellan 1, 2, 3, 4, 5 eller 6.");
                     break;
-                    
             }
         }
     }
@@ -168,15 +120,10 @@ public class App {
         if (svar.equals("ja")) {
             System.out.println("Du är utloggad Boss.");
             if (loggaIn(input)) {
-
                 Meny(input);
             }
-
         } else {
-            System.out.println("Du är fortforande inloggad Boss.");
-
+            System.out.println("Du är fortforande inloggad Boss!");
         }
-
     }
-
 }
