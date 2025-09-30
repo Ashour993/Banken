@@ -61,14 +61,13 @@ public class App {
         boolean konto = true;
         while (konto) {
             System.out.println(
-                "Välj ett alternativ:\n**** MENY ****\n" +
-                "1. Se saldo\n" +
-                "2. Insättning\n" +
-                "3. Uttag\n" +
-                "4. Ändra din LösenOrd!\n" +
-                "5. Loggaut\n" +
-                "6. Avsluta programmet!"
-            );
+                    "Välj ett alternativ:\n**** MENY ****\n" +
+                            "1. Se saldo\n" +
+                            "2. Insättning\n" +
+                            "3. Uttag\n" +
+                            "4. Ändra din LösenOrd!\n" +
+                            "5. Loggaut\n" +
+                            "6. Avsluta programmet!");
 
             String val = input.nextLine();
 
@@ -89,7 +88,9 @@ public class App {
                 case "3":
                     System.out.print("Boss hur mycket cash ta ut vi idag: ");
                     int uttag = läsHeltal(input);
-                    if (uttag > saldo) {
+                    if (uttag <= 0) {
+                        System.out.println("Du kan inte ta ut 0 eller minus pengar, försök igen!");
+                    } else if (uttag > saldo) {
                         System.out.println("Tyvär Boss du har bara: " + saldo + " kr.");
                     } else {
                         saldo -= uttag;
