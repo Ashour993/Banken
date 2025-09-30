@@ -1,34 +1,26 @@
 import java.util.Scanner;
 
 public class App {
-    /*
-     * Här skriver jag 3 variablr en
-     * variabl till PinKod ,till saldo och till försök.
-     */
     static int pin = 1234;
     static int saldo = 0;
     static int försök = 0;
 
     public static void main(String[] args) throws Exception {
-         Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
         if (loggaIn(input)) {
             Meny(input);
-           
         } else {
             System.out.println("Boss!!! du glömet din pin?! Snälla försök senare. Programmet avslutas.");
         }
 
         input.close();
-
     }
-    
 
     private static boolean loggaIn(Scanner input) {
         while (försök < 3) {
             System.out.print("Ange din pinkod: ");
             int dinPinKod = läsHeltal(input);
-            
 
             if (dinPinKod == pin) {
                 System.out.println("Välkommen Boss!");
@@ -39,41 +31,44 @@ public class App {
             }
         }
         return false;
+    }
 
-    } 
-    private static int läsHeltal(Scanner input) {
-    while (true) {
-        String inmatning = input.nextLine();
-        try {
-            return Integer.parseInt(inmatning);
-        } catch (NumberFormatException e) {
-            System.out.print("Ange ett heltal: ");
+    private static void ändraLösenOrd(Scanner input) {
+        System.out.println("Ange din gamla lösenord: ");
+        int gammalPin = läsHeltal(input);
+        if (gammalPin == pin) {
+            System.out.println("ange din nya pinKod: ");
+            int nyPinKod = läsHeltal(input);
+            pin = nyPinKod;
+            System.out.println("Din gammal pinKod är ändrat!");
+        } else {
+            System.out.println("Fel pinKod!! Du kan inte ändra!!");
         }
     }
 
-            // Metod 1: Den här metod användaren kan bytas sin pinKod!
-}       private static void ändraLösenOrd (Scanner input){
-            System.out.println("Ange din gamla lösenord: ");
-            int gammalPin = läsHeltal(input);
-            if (gammalPin == pin ) {
-                System.out.println("ange din nya pinKod: ");
-                int nyPinKod = läsHeltal(input);
-                pin = nyPinKod;
-                System.out.println("Din gammal pinKod är ändrat!");
-                
-            } else {
-                System.out.println("Fel pinKod!! Du kan inte ändra!!");
+    private static int läsHeltal(Scanner input) {
+        while (true) {
+            String inmatning = input.nextLine();
+            try {
+                return Integer.parseInt(inmatning);
+            } catch (NumberFormatException e) {
+                System.out.print("Ange ett heltal: ");
             }
-}
+        }
+    }
 
-
-    
-    // Metod 2: den här metoden är för meny och saldo
-     private static void Meny(Scanner input) {
+    private static void Meny(Scanner input) {
         boolean konto = true;
         while (konto) {
-            System.out.println("Välj ett alternativ:\n" + "****" + " " + "MENY " + "  " + "****\n" + "1. Se saldo\n" + "2. Insättning\n" + "3. Uttag\n" + "4. Ändra din LösenOrd!\n" + "5. Loggaut:\n " + "6. Avsluta programmet!"
-                   );
+            System.out.println(
+                "Välj ett alternativ:\n**** MENY ****\n" +
+                "1. Se saldo\n" +
+                "2. Insättning\n" +
+                "3. Uttag\n" +
+                "4. Ändra din LösenOrd!\n" +
+                "5. Loggaut\n" +
+                "6. Avsluta programmet!"
+            );
 
             String val = input.nextLine();
 
@@ -81,66 +76,54 @@ public class App {
                 case "1":
                     System.out.println("Du saldo: " + saldo + " kr.");
                     break;
-                    case "2":
+                case "2":
                     System.out.print("Ange din cash Boss: ");
                     int insätt = läsHeltal(input);
-                    
-                   
-                    saldo += insätt;
-                    System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo
-                            + " kr.  Boss du blir lite rikare idag :)");
-                    break;
-                    case "3":
-                    System.out.print("Boss hur mycket cash ta ut vi idag : ");
-                    int uttag = läsHeltal(input);
-                    
-                    if (uttag > saldo) {
-                        System.out.println("Tyvär Boss du har bara: " + saldo + " kr. Lägg lite extra cash ;)");
+                    if (insätt <= 0) {
+                        System.out.println("Du kan inte sätta in 0 eller minus pengar, försök igen!");
                     } else {
-                        System.out.println("Du tog ut " + uttag + " kr. Din nya  saldo: " + saldo + " kr.");
-                        saldo -= uttag;
+                        saldo += insätt;
+                        System.out.println("Du satte in " + insätt + " kr. Din saldo blir: " + saldo + " kr.");
                     }
                     break;
-                    case "4":
+                case "3":
+                    System.out.print("Boss hur mycket cash ta ut vi idag: ");
+                    int uttag = läsHeltal(input);
+                    if (uttag > saldo) {
+                        System.out.println("Tyvär Boss du har bara: " + saldo + " kr.");
+                    } else {
+                        saldo -= uttag;
+                        System.out.println("Du tog ut " + uttag + " kr. Nytt saldo: " + saldo + " kr.");
+                    }
+                    break;
+                case "4":
                     ändraLösenOrd(input);
                     break;
-                    case "5":
+                case "5":
                     loggaUt(input);
                     break;
-
-                    case "6":
+                case "6":
                     System.out.println("Programmet avslutas.");
                     konto = false;
                     break;
-
-               
-
                 default:
                     System.out.println("Du kan välja bara mellan 1, 2, 3, 4, 5 eller 6.");
                     break;
-                    
             }
         }
     }
 
-    private static void loggaUt (Scanner input){
+    private static void loggaUt(Scanner input) {
         System.out.println("vill du logga ut? ( ja/nej )?: ");
         String svar = input.nextLine().trim().toLowerCase();
 
         if (svar.equals("ja")) {
             System.out.println("Du är utloggad Boss.");
             if (loggaIn(input)) {
-
                 Meny(input);
             }
-                
-            } else {
-                System.out.println("Du är fortforande inloggad Boss!");
-
-            }
-            
+        } else {
+            System.out.println("Du är fortforande inloggad Boss!");
         }
-
     }
-    
-
+}
